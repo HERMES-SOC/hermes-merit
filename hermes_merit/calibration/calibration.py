@@ -68,7 +68,7 @@ def calibrate_file(data_filename: Path) -> Path:
     Examples
     --------
     >>> from hermes_merit.calibration import calibrate_file
-    >>> level1_file = calibrate_file('hermes_MAG_l0_2022239-000000_v0.bin')  # doctest: +SKIP
+    >>> level1_file = calibrate_file('hermes_MERIT_l0_2022239-000000_v0.bin')  # doctest: +SKIP
     """
     log.info(f"Calibrating file:{data_filename}.")
     output_filename = (
@@ -81,7 +81,7 @@ def calibrate_file(data_filename: Path) -> Path:
         file_metadata["instrument"] == hermes_merit.INST_NAME
         and file_metadata["level"] == "l0"
     ):
-        #  data = parse_merit_sci_packets(data_filename)
+        #  data = parse_l0_sci_packets(data_filename)
         data = {}
         # test opening the file
         with open(data_filename, "r") as fp:
@@ -146,13 +146,13 @@ def parse_l0_sci_packets(data_filename: Path) -> dict:
     Examples
     --------
     >>> import hermes_merit.calibration as calib
-    >>> data_filename = "hermes_MAG_l0_2022339-000000_v0.bin"
+    >>> data_filename = "hermes_MERIT_l0_2022339-000000_v0.bin"
     >>> data = calib.parse_merit_sci_packets(data_filename)  # doctest: +SKIP
     """
     log.info(f"Parsing packets from file:{data_filename}.")
 
     pkt = ccsdspy.FixedLength.from_file(
-        os.path.join(hermes_merit._data_directory, "MAG_sci_packet_def.csv")
+        os.path.join(hermes_merit._data_directory, "MERIT_sci_packet_def.csv")
     )
     data = pkt.load(data_filename)
     return data
@@ -179,7 +179,7 @@ def l0_sci_data_to_cdf(data: dict, original_filename: Path) -> Path:
     >>> from pathlib import Path
     >>> from hermes_core.util.util import parse_science_filename
     >>> import hermes_merit.calibration as calib
-    >>> data_filename = Path("hermes_MAG_l0_2022339-000000_v0.bin")
+    >>> data_filename = Path("hermes_MERIT_l0_2022339-000000_v0.bin")
     >>> metadata = parse_science_filename(data_filename)  # doctest: +SKIP
     >>> data_packets = calib.parse_l0_sci_packets(data_filename)  # doctest: +SKIP
     >>> cdf_filename = calib.l0_sci_data_to_cdf(data_packets, data_filename)  # doctest: +SKIP
