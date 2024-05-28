@@ -167,10 +167,9 @@ def l0_sci_data_to_cdf(data: dict, original_filename: Path) -> Path:
     ----------
     data: dict
         A dictionary of arrays which includes the ccsds header fields
-        original_filename: `pathlib.Path`
+    original_filename: `pathlib.Path`
         The Path to the originating file.
-    destination_dir: `pathlib.Path`
-        The directory where the output file will be written.
+
     Returns
     -------
     output_filename: `pathlib.Path`
@@ -205,6 +204,7 @@ def l0_sci_data_to_cdf(data: dict, original_filename: Path) -> Path:
 def get_calibration_file(data_filename: Path, time=None) -> Path:
     """
     Given a time, return the appropriate calibration file.
+    
     Parameters
     ----------
     data_filename: `pathlib.Path`
