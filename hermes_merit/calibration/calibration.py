@@ -204,7 +204,7 @@ def l0_sci_data_to_cdf(data: dict, original_filename: Path) -> Path:
 def get_calibration_file(data_filename: Path, time=None) -> Path:
     """
     Given a time, return the appropriate calibration file.
-    
+
     Parameters
     ----------
     data_filename: `pathlib.Path`
