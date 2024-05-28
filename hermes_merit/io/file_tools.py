@@ -11,7 +11,7 @@ def read_file(data_filename):
 
     Parameters
     ----------
-    data_filename: str
+    data_filename: `pathlib.Path`
         A file to read.
 
     Returns
